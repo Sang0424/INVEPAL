@@ -1,0 +1,32 @@
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.login{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    align-self:flex-end;
+}
+.login_btn{
+    background-color: transparent;
+    width: 10rem;
+    height:4rem;
+    font-size:2rem;
+    border-radius:0.5rem;
+    margin-right: 2rem;
+    margin-left:3rem;
+    &:hover{
+        background-color: aliceblue;
+        cursor:pointer;
+    }
+}
+.gnb{
+    flex:0.7;
+    align-self: flex-end;
+    margin-bottom:1rem;
+}
+.nav{
+    font-size:1.2rem;
+}

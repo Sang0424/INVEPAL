@@ -1,0 +1,21 @@
+.search{
+    display: flex;
+}
+.searchBar{
+    border-top-left-radius: 3rem;
+    border-bottom-left-radius: 3rem;
+    height:3rem;
+    width:35rem;
+    padding-left:2rem;
+    border-right:none;
+}
+.searchBar_btn{
+    background-color:white;
+    border-top-right-radius: 3rem;
+    border-bottom-right-radius: 3rem;
+    width:5rem;
+    &:hover{
+        border-color: darkblue;
+        cursor: pointer;
+    }
+}
