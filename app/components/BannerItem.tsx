@@ -1,33 +1,15 @@
 'use client'
 
-import { useState } from "react";
-// import { ReactElement } from "react";
+import { useState,useMemo } from "react";
 import IndexChart from "./IndexChart";
 import type { Indice,IndiceData } from "../types/components/interface";
-import styles from './BannerItem.module.scss';
+import styles from '../lib/ui/BannerItem.module.scss';
 
-// export default async function BannerItem({indice}:{indice:string}):Promise<ReactElement>{
-//     // let data = await fetch(`http://localhost:8000/api/indices/${indice}`,{cache:"no-store"}).then((res) => res.json());
-//     let today_indice:Indice = data[data.length - 1];
-//     let prev_indice:Indice = data[data.length - 2];
-//     let change_amount:number = prev_indice.Close * today_indice.Change;
-
-
-//     return(
-//         <div className={styles.container}>
-//             <p className={styles.indice}>{indice.toUpperCase()}</p>
-//             <div className={change_amount > 0 ? styles.pricesUp : styles.pricesDown}> 
-//                 <p className={styles.close}>{today_indice.Close}</p>
-//                 <p className={styles.change}>{change_amount.toFixed(2)}</p>
-//                 <p className={styles.change_pct}>{today_indice.Change > 0 ? '+' : '-'}{today_indice.Change * 100}%</p>
-//             </div>
-//             <IndexChart data={data} indice={indice}/>
-//         </div> 
-//     )
-// }
 export default function BannerItem({data}:{data:IndiceData}){
     const [selectedIndice, setSelectedIndice] = useState<'kospi' | 'kosdaq' | 'ks200'>('kospi');
     const [chartData, setChartData] = useState<Indice[]>(data[selectedIndice]);
+
+    const children = useMemo(() => <IndexChart data={chartData} indice={selectedIndice}/>,[chartData,selectedIndice]);
 
     const handleMouseEnter = (indice:'kospi'|'kosdaq'|'ks200') => {
         setSelectedIndice(indice);
@@ -49,7 +31,7 @@ export default function BannerItem({data}:{data:IndiceData}){
         <>
             <div className={styles.container}>
                 <ul className={styles.prices}>
-                <li onMouseEnter={() => handleMouseEnter('kospi')}>
+                <li onMouseEnter={() => handleMouseEnter('kospi')} className={selectedIndice === 'kospi' ? styles.selected : styles.indice}>
                     <p>코스피</p>
                     <div className={styles.info}>
                         <span className={today_kospi.Change > 0 ? styles.priceUp : styles.priceDown}>{today_kospi.Close}</span>
@@ -57,7 +39,7 @@ export default function BannerItem({data}:{data:IndiceData}){
                         <span className={today_kospi.Change > 0 ? styles.changeUp : styles.changeDown}>{today_kospi.Change * 100 > 0 ? '+' : ''}{(today_kospi.Change * 100).toFixed(2)}%</span>
                     </div>
                 </li>
-                <li onMouseEnter={() => handleMouseEnter('kosdaq')}>
+                <li onMouseEnter={() => handleMouseEnter('kosdaq')} className={selectedIndice === 'kosdaq' ? styles.selected : styles.indice}>
                     <p>코스닥</p>
                     <div className={styles.info}>
                         <span className={today_kosdaq.Change > 0 ? styles.priceUp : styles.priceDown}>{today_kosdaq.Close}</span>
@@ -65,7 +47,7 @@ export default function BannerItem({data}:{data:IndiceData}){
                         <span className={today_kosdaq.Change > 0 ? styles.changeUp : styles.changeDown}>{today_kosdaq.Change * 100 > 0 ? '+' : ''}{(today_kosdaq.Change * 100).toFixed(2)}%</span>
                     </div>
                 </li>
-                <li onMouseEnter={() => handleMouseEnter('ks200')}>
+                <li onMouseEnter={() => handleMouseEnter('ks200')} className={selectedIndice === 'ks200' ? styles.selected : styles.indice}>
                     <p>코스피200</p>
                     <div className={styles.info}>
                         <span className={today_kospi200.Change > 0 ? styles.priceUp : styles.priceDown}>{today_kospi200.Close}</span>
@@ -75,7 +57,8 @@ export default function BannerItem({data}:{data:IndiceData}){
                 </li>
                 </ul>
                 <div className={styles.chart}>
-                    <IndexChart data={chartData} indice={selectedIndice}/>
+                    {/* <IndexChart data={chartData} indice={selectedIndice}/> */}
+                    {children}
                 </div>
             </div>
             

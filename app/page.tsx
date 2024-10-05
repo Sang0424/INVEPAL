@@ -1,20 +1,22 @@
-import styles from './global.module.scss'
-import BannerItem from './components/BannerItem';
+import styles from './global.module.scss';
 import Banner from './components/Banner';
+import Main from './components/Main';
 
-export default function Home() {
-  const indices = ['kospi','kosdaq','kospi200']
+export default function Home({searchParams}:{searchParams?: {
+  query?: string;
+  page?: string;
+  limit?:string;
+};})
+ {
+  const query = searchParams?.query || '';
+  const currentPage = Number(searchParams?.page) || 1;
+  const limit = Number(searchParams?.limit) || 30;
   return (
     <>
       <div className={styles.banner}>
-        {/* <BannerItem indice="kospi" />
-        <BannerItem indice="kosdaq" />
-        <BannerItem indice="kospi200" /> */}
         <Banner />
       </div>
-      <main className={styles.main}>
-          <p>main</p>
-      </main>
+      <Main query={query} currentPage={currentPage} limit={limit}/>
     </>
   );
 }

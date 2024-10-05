@@ -3,7 +3,7 @@
 import Image from "next/image";
 import logo from '../../public/Logo.svg'
 import  SearchBar  from "./SearchBar";
-import styles from './Header.module.scss'
+import styles from '../lib/ui/Header.module.scss'
 
 export default function Header(){
     return(

@@ -1,7 +1,7 @@
 'use client'
 
 import SearchIcon from '@mui/icons-material/Search';
-import styles from './SearchBar.module.scss'
+import styles from '../lib/ui/SearchBar.module.scss'
 
 export default function SearchBar(){
     return(

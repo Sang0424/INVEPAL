@@ -3,7 +3,7 @@
 import {Chart} from 'chart.js/auto';
 import { useRef, useEffect } from "react";
 import type { IndexChartProps } from "../types/components/interface";
-import styles from './IndexChart.module.scss'
+import styles from '../lib/ui/IndexChart.module.scss'
 
 
 export default function IndexChart({data, indice}:IndexChartProps){

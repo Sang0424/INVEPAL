@@ -22,3 +22,23 @@ export interface IndexChartProps{
     data: Indice[],
     indice: string
 }
+
+export interface Stock{
+    'Code':string
+    'ISU_CD':string
+    'Name':string
+    'Market':string
+    'Dept':string
+    'Close':string
+    'ChangeCode':string
+    'Changes':number
+    'ChagesRatio':number
+    'Open':number
+    'High':number
+    'Low':number
+    'Volume':number
+    'Amount':number
+    'Marcap':number
+    'Stocks':number
+    'MarketId':string
+}
